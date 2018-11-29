@@ -2,12 +2,15 @@
 
 ## Features
 #### Vuejs
+* [vuejs](https://vuejs.org/)
 * [vuex](https://github.com/vuejs/vuex)
 
 #### Typescript
+* [typescript](https://www.typescriptlang.org/)
 * [@types/node](https://github.com/DefinitelyTyped/DefinitelyTyped)
 
 #### Webpack
+* [webpack](https://webpack.js.org/)
 * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 * [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)
 * [optimize-css-assets-webpack-plugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin)
@@ -15,10 +18,11 @@
 * [ts-loader](https://github.com/TypeStrong/ts-loader)
 
 #### TSLint
+* [tslint](https://palantir.github.io/tslint/)
 
 #### Prettier
+* [prettier](https://prettier.io/)
 
-## Browser support
 
 #### Internet Explorer 9+
 
