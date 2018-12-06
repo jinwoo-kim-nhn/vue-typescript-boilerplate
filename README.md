@@ -1,6 +1,7 @@
 # VUE-TYPESCRIPT Boilerplate
 
-## Features
+## Included Modules
+
 #### Vuejs
 * [vuejs](https://vuejs.org/)
 * [vuex](https://github.com/vuejs/vuex)
@@ -24,19 +25,31 @@
 * [prettier](https://prettier.io/)
 
 
-#### Internet Explorer 9+
+## Browser support
 
-- Supports all browsers that are ES5-compliant (IE8 and below are not supported).
+#### Supports all browsers that are ES5-compliant 
+
+- IE8 and below are not supported
 
 ## Getting started
 
-1. `git clone https://github.com/jinwoo-kim-nhn/vue-typescript-boilerplate.git`
-2. Inside repo directory run `npm install`
-3. Start the dev serve `npm run dev`
-4. Open http://localhost:8080
+1. Gets the git project. 
+```js
+  git clone https://github.com/jinwoo-kim-nhn/vue-typescript-boilerplate.git
+```
+2. Run the installation from the internal repo directory.
+```js
+  npm install
+```
+3. Start the webpack-dev-server.
+```js
+  npm run dev
+```
+4. Open http://localhost:8080 in your browser.
+
 
 ## Commands
-* `npm run dev` - start the dev serve
-* `npm run lint` - run an TSLint check
-* `npm run build` - create build in dist folder
-* `npm run build-dev` - create build for dev in dist folder
+* `npm run dev` - Start webpack-dev-server.
+* `npm run lint` - Run ESLint.
+* `npm run build` - Bundle and minify resources into `/dist` directory.
+* `npm run build-dev` - Bundle resources into `/dist` directory.
