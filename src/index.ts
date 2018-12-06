@@ -12,15 +12,11 @@ Vue.config.productionTip = false;
  * @returns {object}  vue instance
  */
 export function sampleApp(options: any) {
-  const vm = new Vue({
+  return new Vue({
     el: options.el,
     store,
     render: h => h(App)
   });
-
-  return {
-    vm
-  };
 }
 
 if (process.env.NODE_ENV === 'development') {
