@@ -1,25 +1,9 @@
-/* font */
-@font-face {
-  font-family: quicksand-regular;
-  src: url('../font/quicksand-regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: quicksand-medium;
-  src: url('../font/quicksand-medium.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: quicksand-bold;
-  src: url('../font/quicksand-bold.ttf') format('truetype');
-}
 html, body {
   height: 100%;
 }
 
 body {
   font-size: 16px;
-  font-family: 'quicksand-regular';
 }
 body > div {
   text-align: center;
