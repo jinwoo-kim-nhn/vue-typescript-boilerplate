@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const {VueLoaderPlugin} = require('vue-loader');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -14,7 +14,6 @@ module.exports = (env, options = {}) => {
     },
     output: {
       filename: '[name].bundle.js',
-      libraryTarget: 'umd',
       path: path.resolve(__dirname, 'dist')
     },
     resolve: {
@@ -39,7 +38,7 @@ module.exports = (env, options = {}) => {
           }
         },
         {
-          test: /\.(png|jpg|gif|ttf)$/,
+          test: /\.(png|jpe?g|gif|ttf|woff|woff2|eot|otf)$/,
           use: {
             loader: 'file-loader',
             options: {
@@ -63,18 +62,18 @@ module.exports = (env, options = {}) => {
           }
         }
       }
-    }
+    },
+    plugins: [new VueLoaderPlugin(), new MiniCssExtractPlugin()]
   };
 
   if (options.mode === 'development') {
-    config.plugins = [
-      new VueLoaderPlugin(),
-      new webpack.HotModuleReplacementPlugin(),
+    config.plugins.push(new webpack.HotModuleReplacementPlugin());
+    config.plugins.push(
       new HtmlWebpackPlugin({
-        title: 'Development',
-        showErrors: true
+        template: 'example/index.html'
       })
-    ];
+    );
+
 
     config.devtool = 'inline-source-map';
     config.devServer = {
@@ -86,28 +85,22 @@ module.exports = (env, options = {}) => {
       }
     };
   } else {
-    config.optimization = {
-      minimizer: [
-        new UglifyJsPlugin({
-          cache: true,
-          parallel: true,
-          sourceMap: false
-        }),
-        new OptimizeCSSAssetsPlugin()
-      ]
-    };
+    Object.assign(config.output, {
+      filename: '[name].[contenthash].js',
+      libraryTarget: 'umd'
+    });
 
-    config.plugins = [new VueLoaderPlugin(), new CleanWebpackPlugin(['dist'])];
+    config.optimization.minimizer = [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: false
+      }),
+      new OptimizeCSSAssetsPlugin()
+    ];
+
+    config.plugins.push(new CleanWebpackPlugin(['dist']));
   }
-
-  config.plugins.push(new MiniCssExtractPlugin());
-  config.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(options.mode)
-      }
-    })
-  );
 
   return config;
 };

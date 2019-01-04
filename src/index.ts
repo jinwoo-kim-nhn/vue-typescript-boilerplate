@@ -7,11 +7,15 @@ import App from './components/App';
 
 Vue.config.productionTip = false;
 
+interface Options {
+  el: HTMLDivElement;
+}
+
 /**
  * @param {object} options - app options
  * @returns {object}  vue instance
  */
-export function sampleApp(options: any) {
+export function sampleApp(options: Options) {
   return new Vue({
     el: options.el,
     store,
@@ -19,9 +23,7 @@ export function sampleApp(options: any) {
   });
 }
 
-if (process.env.NODE_ENV === 'development') {
-  const el = document.createElement('div');
-  document.body.insertBefore(el, document.body.firstChild);
-
-  (<any>window).sampleApp = sampleApp({el});
+if (document.getElementById('hello-world-control')) {
+  const el: HTMLDivElement = <HTMLDivElement>document.getElementById('hello-world-control');
+  sampleApp({el});
 }
