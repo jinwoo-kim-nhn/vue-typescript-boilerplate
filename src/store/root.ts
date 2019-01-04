@@ -1,6 +1,6 @@
 import {setMessage} from './types';
 
-interface State {
+interface IState {
   message: string;
 }
 
@@ -11,7 +11,7 @@ export const state = {
 export const getters = {};
 export const actions = {};
 export const mutations = {
-  [setMessage](rootState: State, message: string) {
+  [setMessage](rootState: IState, message: string) {
     rootState.message = message;
   },
 };
